@@ -21,7 +21,7 @@ Mask:
 '''
 
 
-network = input('Введите ip адрес и маску подсети: ')
+network = raw_input('Введите ip адрес и маску подсети: ')
 
 network = network.split('/')
 ip, mask = network
