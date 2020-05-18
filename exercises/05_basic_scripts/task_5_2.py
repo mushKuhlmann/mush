@@ -19,3 +19,22 @@ Mask:
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+
+
+network = input('Введите ip адрес и маску подсети: ')
+
+network = network.split('/')
+ip, mask = network
+ip1 = ip.split('.')
+oct1, oct2, oct3, oct4 = ip1
+oct1 = int(oct1)
+oct2 = int(oct2)
+oct3 = int(oct3)
+oct4 = int(oct4)
+mask = int(mask)
+ip_template = '''
+Network:
+{:<8} {:<8} {:<8} {:<8}
+{:08b} {:08b} {:08b} {:08b}
+'''
+print(ip_template.format(oct1, oct2, oct3, oct4, oct1, oct2, oct3, oct4))
