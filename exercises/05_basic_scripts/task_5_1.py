@@ -22,7 +22,7 @@ $ python task_5_1.py
 '''
 
 
-name = raw_input('Введите  имя устройства: ')
+name = input('Введите  имя устройства: ')
 
 london_co = {
    'r1': {
@@ -50,4 +50,5 @@ london_co = {
     }
 }
 
-print(london_co.get('{}'.format(name)))
+#print(london_co.get('{}'.format(name)))
+print(london_co[name])
