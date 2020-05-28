@@ -16,23 +16,7 @@ Outbound Interface:    FastEthernet0/0
 '''
 f = open('ospf.txt')
 list_ospf = f.read().split('\n')
-list_ospf0 = list_ospf[0]
-list_ospf1 = list_ospf[1]
-list_ospf2 = list_ospf[2]
-list_ospf3 = list_ospf[3]
-list_ospf4 = list_ospf[4]
-list_ospf5 = list_ospf[5]
-list_ospf6 = list_ospf[6]
-list_ospf7 = list_ospf[7]
-
-newstring0 = list_ospf0.split()
-str1 = newstring0[0]
-str2 = newstring0[1]
-str3 = newstring0[2]
-str4 = newstring0[4]
-str5 = newstring0[5]
-str6 = newstring0[6]
-
+i = 0
 ospf_template = '''
 Protocol:               {:<10}
 Prefix:                 {:<10}
@@ -41,7 +25,18 @@ Next-Hop:               {:<10}
 Last update:            {:<10}
 Outbound Interface:     {:<10}
 '''
-
-print(ospf_template.format(str1, str2, str3, str4, str5, str6))
+len_list_ospf = len(list_ospf)
+while i < (len_list_ospf - 1):
+    list_ospf_new = list_ospf[i]
+    i += 1
+    newstring = list_ospf_new.split()
+    newstring.pop(3)
+    str1 = newstring[0]
+    str2 = newstring[1]
+    str3 = newstring[2]
+    str4 = newstring[3]
+    str5 = newstring[4]
+    str6 = newstring[5]
+    print(ospf_template.format(str1, str2, str3, str4, str5, str6))
 
 
