@@ -13,3 +13,11 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+
+f = open('config_sw1.txt')
+k = len(ignore)
+for line in f:
+	if line.startswith('!') == False:
+		if (ignore[0] not in line) and (ignore[1] not in line) and (ignore[2] not in line):	
+		 print(line)
+

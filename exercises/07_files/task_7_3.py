@@ -17,3 +17,14 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+f = open('CAM_table.txt')
+cam_table = f.read()
+remove_string = '''sw1#sh mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    '''
+cam_new = cam_table.strip(remove_string)
+
+print(cam_new)
