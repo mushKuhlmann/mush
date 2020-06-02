@@ -18,13 +18,23 @@
 
 '''
 f = open('CAM_table.txt')
-cam_table = f.read()
-remove_string = '''sw1#sh mac address-table
-          Mac Address Table
--------------------------------------------
+cam_table = f.read().rstrip().split('\n')
+cam_template = '''{:<8} {:<8}       {:<8}'''
+cam_table.pop(0)
+cam_table.pop(0)
+cam_table.pop(0)
+cam_table.pop(0)
+cam_table.pop(0)
+cam_table.pop(0)
+i = 0
+len_cam_table = len(cam_table)
+while i < len_cam_table:
+	list_cam_table = cam_table[i]
+	i +=1
+	string_cam_table = list_cam_table.split()
+	string_cam_table.pop(2)
+	vlan = string_cam_table[0]
+	mac = string_cam_table[1]
+	interface = string_cam_table[2]
+	print(cam_template.format(vlan, mac, interface))
 
-Vlan    Mac Address       Type        Ports
-----    -----------       --------    '''
-cam_new = cam_table.strip(remove_string)
-
-print(cam_new)
