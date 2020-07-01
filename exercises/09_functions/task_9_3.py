@@ -25,21 +25,14 @@
 def get_int_vlan_map(config_filename):
 	f = open(config_filename)
 	list_config_filename = f.read().rstrip().split('\n')
-	list_trunk = []
-	list_access = []
-	list_vlan = []
 	dict_trunk = {}
 	dict_access = {}
-	index_element = 0
 	for element in list_config_filename:
 		if element.startswith('interface FastEthernet'):
 			index_element = list_config_filename.index(element)
 			if list_config_filename[(index_element + 1)] == ' switchport trunk encapsulation dot1q':
-				#list_trunk.append(element)
 				vlan1 = list_config_filename[(index_element + 2)].strip(' switchport trunk allowed vlan ')
-				#list_vlan.append(vlan)
 				dict_trunk[element] = vlan1
-				#dict_trunk.update(element = vlan)
 			elif list_config_filename[(index_element + 1)] == ' switchport mode access':
 				vlan2 = list_config_filename[(index_element + 2)].strip(' switchport access vlan ')
 				dict_access[element] = vlan2
