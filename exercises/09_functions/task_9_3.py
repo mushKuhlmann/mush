@@ -36,7 +36,6 @@ def get_int_vlan_map(config_filename):
 			elif list_config_filename[(index_element + 1)] == ' switchport mode access':
 				vlan2 = list_config_filename[(index_element + 2)].strip(' switchport access vlan ')
 				dict_access[element] = vlan2
-	print('словарь портов в режиме trunk \n', dict_trunk)
-	print('словарь портов в режиме access \n', dict_access)
-
+	tuple_vlan = ('{}'.format(dict_trunk), '{}'.format(dict_access))
+	print('\nРЕЗУЛЬТАТ: ', tuple_vlan)
 get_int_vlan_map('config_sw1.txt')
