@@ -27,4 +27,35 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+import module11
+def parse_cdp_neighbors (command_output):
+	list_file = module11.read_file(command_output)
+	equipment = list_file[0].strip('>show cdp neighbors')
+	list_file.pop(0)
+	list_file.pop(0)
+	list_file.pop(0)
+	list_file.pop(0)
+	list_file.pop(0)
+	list_file.pop(0)
+	device_id = []
+	local_interface = []
+	port_id = []
+	local_interface_string = ''
+	port_id_string = ''
+	for line in list_file:
+		list_line = line.split()
+		device_id.insert((len(list_file)-1), list_line[0])
+		local_interface_string = list_line[1]+list_line[2]
+		local_interface.insert((len(list_file)-1),local_interface_string)
+		port_id_string = list_line[8]+list_line[9]
+		port_id.insert((len(list_file)-1), port_id_string)
+	int_tuple = ()
+	cdp_dict = {}
+	neighbor_list = list(zip(device_id, port_id))
+	for interface in local_interface:
+		int_tuple = (equipment, interface)
+		cdp_dict[int_tuple] = ''
+	cdp_dict_end = dict(zip(cdp_dict, neighbor_list))
+	return cdp_dict_end
 
+print(parse_cdp_neighbors('sh_cdp_n_sw1.txt'))
