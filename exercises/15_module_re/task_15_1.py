@@ -22,3 +22,19 @@
 диапазоны адресов и так далее, так как обрабатывается вывод команды, а не ввод пользователя.
 
 '''
+
+import re
+def get_ip_from_cfg(config_filename):
+'С помощью raw-строки нам удалось не экранировать точку слешем, в этом регулярном выражении мы задали две группы - первая это ip, а вторая: mask
+затем определили пустой список find_list, в который будут добавляться совпадения с регулярным выражением
+запись find.groups() выводит кортеж из групп, в нашем случае из ip и mask. После каждого совпадения мы дбавляем этот кортеж в список find_list'
+	regex = (r' ip address (\d+.\d+.\d+.\d+)\s(\d+.\d+.\d+.\d+)')
+	f = open(config_filename)
+	find_list = []
+	for line in f:
+		find = re.search(regex, line)
+		if find:
+			find_list.append(find.groups())
+	return find_list	
+print(get_ip_from_cfg('config_r1.txt'))
+		
