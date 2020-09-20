@@ -30,5 +30,20 @@ object network LOCAL_10.1.9.5
 - перед остальными строками должен быть один пробел
 
 Во всех правилах для ASA интерфейсы будут одинаковыми (inside,outside).
-'''
 
+Флаг 'a' в f1 = open(file_destination,'a') открывает файл для добавления информации в файл. Указатель стоит в конце файла. Создает файл с именем имя_файла, если такового не существует.
+
+'''
+import re
+def convert_ios_nat_to_asa(file_source, file_destination):
+	f = open(file_source)
+	ASA ='''object network LOCAL_{}
+ host {}
+ nat (inside,outside) static interface service tcp {} {}\n'''
+	for line in f:
+		find = re.search(r'ip nat inside source static tcp (\d+.\d+.\d+.\d+)\s(\d+) interface GigabitEthernet0/1 (\d+)', line)
+		if find:
+			f1 = open(file_destination,'a')
+			f1.write(ASA.format(find.group(1), find.group(1), find.group(2), find.group(3)))
+	return
+convert_ios_nat_to_asa('cisco_nat_config.txt','ASA_config.txt')
