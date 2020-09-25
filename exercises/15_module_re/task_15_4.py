@@ -22,4 +22,15 @@ interface Loopback0
 
 Проверить работу функции на примере файла config_r1.txt.
 '''
+import re
+def get_ints_without_description(file_name):
+    regex = '!\ninterface (Ethernet\d/\d)\n\s[^(descr)]'
+#    regex = 'interface (\S+)'
+    f = open(file_name)
+#    print(f.read())
+    find = re.findall(regex, f.read())
+    print(find)
+    return
 
+#print(get_ints_without_description('config_r1.txt'))
+get_ints_without_description('config_r1.txt')
