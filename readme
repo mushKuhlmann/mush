@@ -37,4 +37,15 @@ git push -u origin vetka2
 #в нужную ветку на удаленном гите. можно и в родительской, тогда будет
 #пушиться в родительскую
 
-#add string
+
+
+#смотрим информацию об удаленном репозитории
+git remote -v
+mush    git@github.com:mushKuhlmann/mush.git (fetch)
+mush    git@github.com:mushKuhlmann/mush.git (push)
+# в команде  git pull <remote> <branch> remote  - удаленныйй репозитарий, 
+#branch - это удаленная веточка в этом репозитарии. Этой командой мы сливаем содержимое удаленной ветки 
+#с нашей локальной веткой, в которой мы сейчас находимся.
+git pull <remote> <branch>
+git pull mush main
+
